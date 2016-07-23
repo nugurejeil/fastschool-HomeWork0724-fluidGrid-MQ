@@ -1,0 +1,352 @@
+@charset "utf-8";
+
+/* 1280 16컬럼 유동+반응형 그리드 */
+
+/*화면을 모두 덮는 영역*/
+.grid-container::before{
+  content: "";
+  position: absolute;
+  z-index: 10000;
+  top:0;
+  left:0;
+  width: 100%;
+}
+
+/*유닛 모듈이 float 되어 움직임으로 
+grid가 자식의 영역을 알아 볼 수 있도록 합니다.*/
+.grid::after{
+  content: "";
+  display: block;
+  clear: both;
+}
+
+/*컨테이너의 최대 크기를 지정하고 가운데 정렬*/
+.grid-container{
+  position: relative;
+  width:100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*show-grid 클래스가 붙는 grid-container에 높이를 설정*/
+.grid-container[class*="show-grid"]::before{
+  height: 500vh;
+}
+
+
+
+/*그리드 그리기
+* 하나의 유닛의 크기는 80px --> 전체 넓이 대비 6.25%
+* 유닛의 높이는 27px
+* 거터를 10px
+* 컬럼은 70px  --> 유닛 넓이 대비 87.5%
+* 마지막 유닛의 거터가 보이지 않도록 유닛의 background-size를 조절
+*/
+.grid-container.show-grid::before{
+  background: 
+  linear-gradient(90deg, rgba(93, 109, 112, 0.3)87.5%, rgba(0,0,0,0) 87.5%), 
+  linear-gradient(transparent 26px, #5d6d70 26px);
+  background-size: 6.34% 1px, 1px 27px;
+}
+
+.grid-container{
+  max-width: 1280px;
+}
+
+/*unit에 float를 설정하고 거터의 %값을 unit의 마진으로 설정*/
+.grid [class*="unit-"]{
+  float: left;
+  margin-right: 0.78125%; 
+}
+
+/* 유닛의 크기에 따른 % 값 할당 */
+.grid .last, .grid .omega {margin-right: 0;}
+.grid .unit-1 {width: 5.53%;}
+.grid .unit-2 {width: 11.85%;}
+.grid .unit-3 {width: 18.2%;}
+.grid .unit-4 {width: 24.5%;} 
+.grid .unit-5 {width: 30.85%;}
+.grid .unit-6 {width: 37.2%;}
+.grid .unit-7 {width: 43.5%;}
+.grid .unit-8 {width: 49.85%;}
+.grid .unit-9 {width: 56.2%;}
+.grid .unit-10 {width: 62.5%;}
+.grid .unit-11 {width: 68.8%;}
+.grid .unit-12 {width: 75.15%;}
+.grid .unit-13 {width: 81.5%;}
+.grid .unit-14 {width: 87.8%;}
+.grid .unit-15 {width: 94.13%;}
+.grid .unit-16 {width: 100%;}
+
+/**
+ * --------------------------------
+ * Push, Pull Module
+ * ----------------------------- */
+/*
+  position을 이용해 유닛을 오른쪽, 왼쪽으로 이동합니다.
+  노멀 플로우에 영향을 주지 않습니다.
+*/
+ .grid [class*="push-"], .grid [class*="pull-"]{
+  position: relative;
+ }
+ .grid .push-1 {left: 6.34%;}
+ .grid .push-2 {left: 12.68%;}
+ .grid .push-3 {left: 19.02%;}
+ .grid .push-4 {left: 25.3%;}
+ .grid .push-5 {left: 31.65%;}
+ .grid .push-6 {left: 38%;}
+ .grid .push-7 {left: 44.34%;}
+ .grid .push-8 {left: 50.64%;}
+ .grid .push-9 {left: 57%;}
+ .grid .push-10 {left: 63.3%;}
+ .grid .push-11 {left: 69.65%;}
+ .grid .push-12 {left: 75.95%;}
+ .grid .push-13 {left: 82.3%;}
+ .grid .push-14 {left: 88.64%;}
+ .grid .push-15 {left: 94.9%;}
+ .grid .push-16 {left: 101.44%;}
+
+ .grid .pull-1 {right: 6.34%;}
+ .grid .pull-2 {right: 12.68%;}
+ .grid .pull-3 {right: 19.02%;}
+ .grid .pull-4 {right: 25.3%;}
+ .grid .pull-5 {right: 31.65%;}
+ .grid .pull-6 {right: 38%;}
+ .grid .pull-7 {right: 44.34%;}
+ .grid .pull-8 {right: 50.64%;}
+ .grid .pull-9 {right: 57%;}
+ .grid .pull-10 {right: 63.3%;}
+ .grid .pull-11 {right: 69.65%;}
+ .grid .pull-12 {right: 75.95%;}
+ .grid .pull-13 {right: 82.3%;}
+ .grid .pull-14 {right: 88.64%;}
+ .grid .pull-15 {right: 94.9%;}
+ .grid .pull-16 {right: 101.44%;}
+
+
+/**
+ * --------------------------------
+ * Prefix, Suffix Module
+ * margin
+ * padding
+ * ----------------------------- */
+/* margin 과 padding 을 이용해 유닛을 이동시킵니다.
+ * 노멀 플로우에 영향을 미칩니다. 주로 유닛과 그 뒤에 오는 유닛들 혹은 
+ * 그 앞에 오는 유닛들을 한꺼번에 밀어줄 때 사용합니다.
+*/
+
+ .grid .prefix-1 {margin-left: 6.34%;}
+ .grid .prefix-2 {margin-left: 12.68%;}
+ .grid .prefix-3 {margin-left: 19%;}
+ .grid .prefix-4 {margin-left: 25.33%;}
+ .grid .prefix-5 {margin-left: 31.65%;}
+ .grid .prefix-6 {margin-left: 38%;}
+ .grid .prefix-7 {margin-left: 44.34%;}
+ .grid .prefix-8 {margin-left: 50.64%;}
+ .grid .prefix-9 {margin-left: 57%;}
+ .grid .prefix-10 {margin-left: 63.3%;}
+ .grid .prefix-11 {margin-left: 69.65%;}
+ .grid .prefix-12 {margin-left: 75.95%;}
+ .grid .prefix-13 {margin-left: 82.3%;}
+ .grid .prefix-14 {margin-left: 88.64%;}
+ .grid .prefix-15 {margin-left: 94.9%;}
+ .grid .prefix-16 {margin-left: 101.44%;}
+
+ .grid .suffix-1 {margin-right: 7.12125%;}
+ .grid .suffix-2 {margin-right: 13.46125%;}
+ .grid .suffix-3 {margin-right: 19.80125%;}
+ .grid .suffix-4 {margin-right: 26.08125%;}
+ .grid .suffix-5 {margin-right: 32.43125%;}
+ .grid .suffix-6 {margin-right: 38.78125%;}
+ .grid .suffix-7 {margin-right: 45.1%;}
+ .grid .suffix-8 {margin-right: 51.42125%;}
+ .grid .suffix-9 {margin-right: 57.78125%;}
+ .grid .suffix-10 {margin-right: 64.08125%;}
+ .grid .suffix-11 {margin-right: 70.43125%;}
+ .grid .suffix-12 {margin-right: 76.73125%;}
+ .grid .suffix-13 {margin-right: 83.08125%;}
+ .grid .suffix-14 {margin-right: 89.42125%;}
+ .grid .suffix-15 {margin-right: 95.68125%;}
+ .grid .suffix-16 {margin-right: 102.22125%;}
+
+ .grid .padding-prefix-1 {padding-left: 6.34%;}
+ .grid .padding-prefix-2 {padding-left: 12.68%;}
+ .grid .padding-prefix-3 {padding-left: 19%;}
+ .grid .padding-prefix-4 {padding-left: 25.33%;}
+ .grid .padding-prefix-5 {padding-left: 31.65%;}
+ .grid .padding-prefix-6 {padding-left: 38%;}
+ .grid .padding-prefix-7 {padding-left: 44.34%;}
+ .grid .padding-prefix-8 {padding-left: 50.64%;}
+ .grid .padding-prefix-9 {padding-left: 57%;}
+ .grid .padding-prefix-10 {padding-left: 63.3%;}
+ .grid .padding-prefix-11 {padding-left: 69.65%;}
+ .grid .padding-prefix-12 {padding-left: 75.95%;}
+ .grid .padding-prefix-13 {padding-left: 82.3%;}
+ .grid .padding-prefix-14 {padding-left: 88.64%;}
+ .grid .padding-prefix-15 {padding-left: 94.9%;}
+ .grid .padding-prefix-16 {padding-left: 101.44%;}
+
+ .grid .padding-suffix-1 {padding-right: 6.34%;}
+ .grid .padding-suffix-2 {padding-right: 12.68%;}
+ .grid .padding-suffix-3 {padding-right: 19%;}
+ .grid .padding-suffix-4 {padding-right: 25.33%;}
+ .grid .padding-suffix-5 {padding-right: 31.65%;}
+ .grid .padding-suffix-6 {padding-right: 38%;}
+ .grid .padding-suffix-7 {padding-right: 44.34%;}
+ .grid .padding-suffix-8 {padding-right: 50.64%;}
+ .grid .padding-suffix-9 {padding-right: 57%;}
+ .grid .padding-suffix-10 {padding-right: 63.3%;}
+ .grid .padding-suffix-11 {padding-right: 69.65%;}
+ .grid .padding-suffix-12 {padding-right: 75.95%;}
+ .grid .padding-suffix-13 {padding-right: 82.3%;}
+ .grid .padding-suffix-14 {padding-right: 88.64%;}
+ .grid .padding-suffix-15 {padding-right: 94.9%;}
+ .grid .padding-suffix-16 {padding-right: 101.44%;}
+
+
+
+/**
+ * --------------------------------
+ * 
+ * 모바일 사이즈에서의 그리드 (최소 320px)
+ * 
+ * ----------------------------- */
+ @media (max-width: 599px){
+
+    .grid-container.show-grid::before{
+     background-size: 53.36% 1px, 1px 27px;
+    }
+
+    /*컨테이너의 최대 크기를 지정하고 가운데 정렬*/
+    .grid-container{
+      min-width: 320px;
+    }
+
+    /*unit에 float를 설정하고 거터의 %값을 unit의 마진으로 설정*/
+    .grid [class*="unit-"]{
+      float: left;
+      margin-right: 6.3%;
+    }
+
+    /* 유닛의 크기에 따른 % 값 할당 */
+    .grid .last, .grid .omega {margin-right: 0;}
+    .grid .unit-1 {width: 46.58%;}
+    .grid .unit-2 {width: 100%;}
+
+    /*
+     * --------------------------------
+     * Push, Pull Module
+     * ----------------------------- */
+
+    .grid .push-1 {left: 53.4%;}
+    .grid .pull-1 {right: 53.4%;}
+
+    /**
+     * --------------------------------
+     * Prefix, Suffix Module
+     * margin
+     * padding
+     * ----------------------------- */
+
+     .grid .prefix-1 {margin-left: 53.4%;}
+     .grid .suffix-1 {margin-right: 59.7%;}
+     .grid .padding-prefix-1 {padding-left: 53.4%;}
+     .grid .padding-suffix-1 {padding-right: 53.4%;}
+ }
+
+
+ /**
+ * --------------------------------
+ * 
+ * 타블릿 사이즈에서의 그리드 (최소 600px)
+ * 
+ * ----------------------------- */
+
+ @media (min-width: 600px) and (max-width: 959px){
+    .grid-container.show-grid::before{
+     background-size: 12.75% 1px, 1px 27px;
+    }
+
+    /*unit에 float를 설정하고 거터의 %값을 unit의 마진으로 설정*/
+    .grid [class*="unit-"]{
+      float: left;
+      margin-right: 1.64%;
+    }
+
+    /* 유닛의 크기에 따른 % 값 할당 */
+    .grid .last, .grid .omega {margin-right: 0;}
+    .grid .unit-1 {width: 11.05%;}
+    .grid .unit-2 {width: 23.85%;}
+    .grid .unit-3 {width: 36.6%;}
+    .grid .unit-4 {width: 49.4%;}
+    .grid .unit-5 {width: 62.1%;}
+    .grid .unit-6 {width: 74.8%;}
+    .grid .unit-7 {width: 87.6%;}
+    .grid .unit-8 {width: 100%;}
+
+    /*
+     * --------------------------------
+     * Push, Pull Module
+     * ----------------------------- */
+
+    .grid .push-1 {left: 12.7%;}
+    .grid .push-2 {left: 25.4%;}
+    .grid .push-3 {left: 38.1%;}
+    .grid .push-4 {left: 50.8%;}
+    .grid .push-5 {left: 63.5%;}
+    .grid .push-6 {left: 76.2%;}
+    .grid .push-7 {left: 88.9%;}
+    .grid .push-8 {left: 101.6%;}
+    .grid .pull-1 {right: 12.7%;}
+    .grid .pull-2 {right: 25.4%;}
+    .grid .pull-3 {right: 38.1%;}
+    .grid .pull-4 {right: 50.8%;}
+    .grid .pull-5 {right: 63.5%;}
+    .grid .pull-6 {right: 76.2%;}
+    .grid .pull-7 {right: 88.9%;}
+    .grid .pull-8 {right: 101.6%;}
+
+    /**
+     * --------------------------------
+     * Prefix, Suffix Module
+     * margin
+     * padding
+     * ----------------------------- */
+
+     .grid .prefix-1 {margin-left: 12.7%;}
+     .grid .prefix-2 {margin-left: 25.4%;}
+     .grid .prefix-3 {margin-left: 38.1%;}
+     .grid .prefix-4 {margin-left: 50.8%;}
+     .grid .prefix-5 {margin-left: 63.5%;}
+     .grid .prefix-6 {margin-left: 76.2%;}
+     .grid .prefix-7 {margin-left: 88.9%;}
+     .grid .prefix-8 {margin-left: 101.6%;}
+     .grid .suffix-1 {margin-right: 14.34%;}
+     .grid .suffix-1 {margin-right: 27.04%;}
+     .grid .suffix-1 {margin-right: 39.74%;}
+     .grid .suffix-1 {margin-right: 52.44%;}
+     .grid .suffix-1 {margin-right: 65.14%;}
+     .grid .suffix-1 {margin-right: 77.84%;}
+     .grid .suffix-1 {margin-right: 90.54%;}
+     .grid .suffix-1 {margin-right: 103.24%;}
+
+     .grid .padding-prefix-1 {padding-left: 12.7%;}
+     .grid .padding-prefix-2 {padding-left: 25.4%;}
+     .grid .padding-prefix-3 {padding-left: 38.1%;}
+     .grid .padding-prefix-4 {padding-left: 50.8%;}
+     .grid .padding-prefix-5 {padding-left: 63.5%;}
+     .grid .padding-prefix-6 {padding-left: 76.2%;}
+     .grid .padding-prefix-7 {padding-left: 88.9%;}
+     .grid .padding-prefix-8 {padding-left: 101.6%;}
+     .grid .padding-suffix-1 {padding-right: 12.7%;}
+     .grid .padding-suffix-2 {padding-right: 25.4%;}
+     .grid .padding-suffix-3 {padding-right: 38.1%;}
+     .grid .padding-suffix-4 {padding-right: 50.8%;}
+     .grid .padding-suffix-5 {padding-right: 63.5%;}
+     .grid .padding-suffix-6 {padding-right: 76.2%;}
+     .grid .padding-suffix-7 {padding-right: 88.9%;}
+     .grid .padding-suffix-8 {padding-right: 101.6%;}
+ }
+
+
